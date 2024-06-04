@@ -5,8 +5,8 @@
         static void Main(string[] args)
         {
             string s = GetStringFromUser("Please enter a sentence and I will tell you how many characters the last word has.");
-            string lastWord = GetLastWord(s);
-            Console.WriteLine(lastWord.Length);
+            int lastWord = GetLastWord(s);
+            Console.WriteLine(lastWord);
 
         }
 
@@ -22,18 +22,21 @@
             return userInput;
         }
 
-        static string GetLastWord(string s)
+        static int GetLastWord(string s)
         {
-            string[] words = s.Split(' ');
-
-            if (words.Length > 0)
+            int counter = 0;
+            for (int i = s.Length - 1; i >= 0; i--)
             {
-                return words[words.Length -1];
+                if (s[i] == ' ')
+                {
+                    return counter;
+                }
+                else
+                {
+                    counter++;
+                }
             }
-            else
-            {
-                return string.Empty;
-            }
+            return counter;
         }
     }
 }
